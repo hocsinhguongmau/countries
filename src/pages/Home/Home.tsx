@@ -1,10 +1,17 @@
+import Header from '@/components/Header'
 import List from '@/components/List'
+import SearchBar from '@/components/SearchBar'
+import Sort from '@/components/Sort'
 import React from 'react'
 
 export default function Home() {
   return (
     <>
-      <List itemsPerPage={5} />
+      <div className="flex justify-between items-center">
+        <SearchBar />
+        <Sort />
+      </div>
+      <List />
     </>
   )
 }

@@ -5,28 +5,40 @@ import NoData from '@/components/NoData'
 import { CountryType } from '@/types'
 import { useEffect, useState } from 'react'
 import ReactPaginate from 'react-paginate'
+import { useNumberOfItemStore, useSortStore } from '@/store'
+import {
+  sortNameAsc,
+  sortNameDesc,
+  sortPopulationAsc,
+  sortPopulationDesc,
+} from '@/services/frontend-service'
 
-type Props = {
-  itemsPerPage: number
-}
-
-export default function List({ itemsPerPage }: Props) {
+export default function List() {
   const { isLoading, data } = useFetchAllCountries()
-
+  const { items } = useNumberOfItemStore()
+  const { sort } = useSortStore()
   const [currentItems, setCurrentItems] = useState<CountryType[]>([])
   const [pageCount, setPageCount] = useState(0)
   const [itemOffset, setItemOffset] = useState(0)
 
   useEffect(() => {
-    const endOffset = itemOffset + itemsPerPage
+    const endOffset = itemOffset + items
     if (data !== undefined && data.length > 0) {
-      setCurrentItems(data.slice(itemOffset, endOffset))
-      setPageCount(Math.ceil(data.length / itemsPerPage))
+      if (sort === 'name_desc') {
+        setCurrentItems(sortNameDesc(data).slice(itemOffset, endOffset))
+      } else if (sort === 'population_asc') {
+        setCurrentItems(sortPopulationAsc(data).slice(itemOffset, endOffset))
+      } else if (sort === 'population_desc') {
+        setCurrentItems(sortPopulationDesc(data).slice(itemOffset, endOffset))
+      } else {
+        setCurrentItems(sortNameAsc(data).slice(itemOffset, endOffset))
+      }
+      setPageCount(Math.ceil(data.length / items))
     }
-  }, [data, itemOffset, itemsPerPage])
+  }, [data, itemOffset, sort, items])
 
   const handlePageClick = (event: any) => {
-    const newOffset = (event.selected * itemsPerPage) % data.length
+    const newOffset = (event.selected * items) % data.length
     setItemOffset(newOffset)
   }
 
@@ -37,7 +49,7 @@ export default function List({ itemsPerPage }: Props) {
   if (!data || data.length < 1) {
     return <NoData message="No data found!" />
   }
-  console.log(data)
+
   return (
     <>
       <div className="grid grid-cols-5 mt-8 px-4 py-4 font-bold bg-main text-white">
@@ -51,7 +63,7 @@ export default function List({ itemsPerPage }: Props) {
         currentItems.map((item: CountryType) => (
           <ListItem key={item.name.common} {...item} />
         ))}
-      {data.length > itemsPerPage ? (
+      {data.length > items ? (
         <ReactPaginate
           breakLabel="..."
           nextLabel={next}
