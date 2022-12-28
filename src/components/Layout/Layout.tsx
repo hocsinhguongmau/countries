@@ -6,7 +6,7 @@ type Props = {
 
 export default function Layout({ children }: Props) {
   return (
-    <div>
+    <div className="container mx-auto">
       <Header />
       {children}
     </div>

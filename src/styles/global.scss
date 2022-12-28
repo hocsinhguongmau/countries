@@ -1,7 +1,85 @@
 @import 'fonts';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   font-family: 'Roboto', sans-serif;
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.circle-animation {
+  @apply relative h-[90px] w-[90px];
+
+  p {
+    @apply absolute top-1/2 left-0 z-10 w-full -translate-y-1/2 text-center text-xs font-bold;
+  }
+  .circle {
+    @apply relative z-0 h-full w-full rounded-full;
+    background: linear-gradient(#9be3ff, #f4b1ea, #f8d46b);
+    animation: loading 2s linear infinite;
+
+    span {
+      @apply absolute h-full w-full rounded-full;
+      background: linear-gradient(#9be3ff, #f4b1ea, #f8d46b);
+
+      &:nth-child(1) {
+        filter: blur(3px);
+      }
+
+      &:nth-child(2) {
+        filter: blur(6px);
+      }
+
+      &:nth-child(3) {
+        filter: blur(8px);
+      }
+
+      &:nth-child(4) {
+        filter: blur(12px);
+      }
+    }
+
+    &:after {
+      content: '';
+      @apply absolute top-0 left-0 right-0 bottom-0 rounded-full border-8 border-white bg-[#030303];
+    }
+  }
+}
+
+.bouncing-loader {
+  @apply flex gap-1 justify-center mt-4;
+  & > div {
+    @apply h-2 w-2 rounded-full bg-main;
+    animation: bouncing-loader 0.45s infinite alternate;
+    &:nth-child(2) {
+      animation-delay: 0.15s;
+    }
+    &:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+  }
+}
+
+@keyframes bouncing-loader {
+  to {
+    opacity: 0.1;
+    transform: translateY(-10px);
+  }
+}
+
+.btn {
+  @apply bg-main text-white px-4 py-2 rounded hover:bg-secondary transition-all duration-200 ease-out;
 }

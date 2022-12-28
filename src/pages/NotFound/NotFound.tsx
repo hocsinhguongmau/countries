@@ -1,0 +1,30 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+export default function NotFound() {
+  return (
+    <div className="py-32">
+      <div className="flex flex-row items-center justify-center gap-4">
+        <span className="text-9xl font-bold">4</span>
+        <div className="circle-animation">
+          <div className="circle">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <span className="text-9xl font-bold">4</span>
+      </div>
+      <h2 className="mt-4 text-center text-4xl font-bold">Page not found</h2>
+      <h3 className="mt-4 text-center text-xl text-gray">
+        Sorry, we could not find the page you are looking for{' '}
+      </h3>
+      <p className="mt-10 text-center">
+        <Link to="/" className="btn w-[200px]">
+          Back to home
+        </Link>
+      </p>
+    </div>
+  )
+}
