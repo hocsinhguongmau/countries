@@ -3,5 +3,5 @@ export type CountryType = {
   name: { common: string }
   region: string
   population: number
-  languages: any
+  languages: { [key: string]: [value: string] }
 }

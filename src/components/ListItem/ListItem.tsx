@@ -18,7 +18,13 @@ export default function ListItem({
       className="grid grid-cols-5 px-4 py-2 hover:bg-secondary hover:text-white items-center border-b border-l border-r border-gray odd:bg-red-100"
     >
       <div>
-        <img src={flags.svg} alt={name.common} width={100} height={50} />
+        <img
+          src={flags.svg}
+          alt={name.common}
+          width={100}
+          height={50}
+          className="border border-gray"
+        />
       </div>
       <div>{name.common}</div>
       <div>{region}</div>

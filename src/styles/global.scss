@@ -83,3 +83,24 @@ body {
 .btn {
   @apply bg-main text-white px-4 py-2 rounded hover:bg-secondary transition-all duration-200 ease-out;
 }
+
+.pagination {
+  @apply mt-8 flex justify-center;
+  li {
+    @apply m-0 p-0;
+    &:after {
+      @apply hidden;
+    }
+    a {
+      @apply inline-block px-3 py-2 text-xs transition-all duration-300 md:text-sm;
+      &:hover {
+        @apply bg-slate-300;
+      }
+    }
+    &.selected {
+      a {
+        @apply bg-main text-white;
+      }
+    }
+  }
+}
