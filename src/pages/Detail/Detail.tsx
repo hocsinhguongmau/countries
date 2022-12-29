@@ -1,8 +1,9 @@
 import Loading from '@/components/Loading'
 import NoData from '@/components/NoData'
 import { useCountryDetail } from '@/hooks/query/backend-query'
-import React from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { GrNext } from 'react-icons/gr'
+import GoogleMapReact from 'google-map-react'
 
 export default function Home() {
   const { name } = useParams()
@@ -19,28 +20,66 @@ export default function Home() {
       <li key={key}>{data[0].languages[key]}</li>
     ))
   }
-
-  console.log(data)
+  const defaultProps = {
+    center: {
+      lat: data[0].latlng[0],
+      lng: data[0].latlng[1],
+    },
+    zoom: 6,
+  }
   return (
-    <div>
-      <Link to="/">Back</Link>
-      <p>{data[0].name.common}</p>
-      <p>{data[0].capital}</p>
-      <p>
-        <img src={data[0].flags.svg} alt={data[0].name.common} />
-      </p>
-      {renderLanguages && <p>{renderLanguages}</p>}
-      <p>
-        The country belongs to <b>{data[0].region}</b> region and{' '}
-        <b>{data[0].subregion}</b> sub-region.
-      </p>
-      <p>
-        Located at the <b>{data[0].latlng[0]}</b>&#176;N and{' '}
-        <b>{data[0].latlng[1]}</b>&#176;W, the country has population of{' '}
-        <b>{data[0].population}</b> and it has gained the independent, according
-        to the CIA World FactBook.
-      </p>
-      <p>{data[0].timezones}</p>
+    <div className="grid grid-cols-2 gap-4 mt-8">
+      <div>
+        <p className="flex gap-2 items-center">
+          <Link to="/" className="font-bold hover:text-main">
+            Home
+          </Link>
+          <GrNext /> {data[0].name.common}
+        </p>
+
+        <h1 className="text-4xl font-bold text-main mt-8">
+          {data[0].name.common}
+        </h1>
+        <p className="mt-2 text-secondary text-xl">
+          Capital: {data[0].capital}
+        </p>
+        <p className="mt-4">
+          <img
+            src={data[0].flags.svg}
+            alt={data[0].name.common}
+            width={200}
+            height={100}
+            className="border border-gray"
+          />
+        </p>
+        <div>
+          <p className="mt-4">
+            <b>Total area:</b> {data[0].area}
+          </p>
+          <p className="mt-2">
+            <b>Population:</b> {data[0].population}
+          </p>
+          <p className="flex gap-2 mt-2">
+            <b>Languages: </b>
+            {renderLanguages && (
+              <ul className="list-disc list-inside">{renderLanguages}</ul>
+            )}
+          </p>
+          <p className="mt-2">
+            <b>Geography:</b> The country belongs to <b>{data[0].region}</b>{' '}
+            region and <b>{data[0].subregion}</b> sub-region. Located at the{' '}
+            <b>{data[0].latlng[0]}</b>&#176;N and
+            <b> {data[0].latlng[1]}</b>&#176;W
+          </p>
+        </div>
+      </div>
+      <div className="w-full h-full">
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: '' }}
+          defaultCenter={defaultProps.center}
+          defaultZoom={defaultProps.zoom}
+        />
+      </div>
     </div>
   )
 }
