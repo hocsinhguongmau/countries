@@ -35,6 +35,7 @@ export default function List() {
       }
       setPageCount(Math.ceil(data.length / items))
     }
+    console.log(currentItems[0]?.name?.common)
   }, [data, itemOffset, sort, items])
 
   const handlePageClick = (event: any) => {

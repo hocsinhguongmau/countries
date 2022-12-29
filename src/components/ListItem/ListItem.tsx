@@ -8,10 +8,12 @@ export default function ListItem({
   population,
   languages,
 }: CountryType) {
-  const renderLanguages = Object.keys(languages).map((key) => (
-    <li key={key}>{languages[key]}</li>
-  ))
-
+  let renderLanguages = null
+  if (languages !== undefined) {
+    renderLanguages = Object.keys(languages).map((key) => (
+      <li key={key}>{languages[key]}</li>
+    ))
+  }
   return (
     <Link
       to={`/country/${name.common}`}
