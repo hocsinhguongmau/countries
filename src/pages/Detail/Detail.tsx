@@ -65,12 +65,19 @@ export default function Home() {
               <ul className="list-disc list-inside">{renderLanguages}</ul>
             )}
           </p>
-          <p className="mt-2">
-            <b>Geography:</b> The country belongs to <b>{data[0].region}</b>{' '}
-            region and <b>{data[0].subregion}</b> sub-region. Located at the{' '}
-            <b>{data[0].latlng[0]}</b>&#176;N and
-            <b> {data[0].latlng[1]}</b>&#176;W
-          </p>
+          <div className="mt-2 flex gap-2">
+            <b>Geography:</b>
+            <div>
+              <p>
+                The country belongs to <b>{data[0].region}</b> region and{' '}
+                <b>{data[0].subregion}</b> sub-region.
+              </p>
+              <p>
+                Located at the <b>{data[0].latlng[0]}</b>&#176;N and
+                <b> {data[0].latlng[1]}</b>&#176;W
+              </p>
+            </div>
+          </div>
         </div>
       </div>
       <div className="w-full h-full">

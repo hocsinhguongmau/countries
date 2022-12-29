@@ -73,17 +73,19 @@ export default function List() {
   }
   return (
     <>
-      <div className="grid grid-cols-5 mt-8 px-4 py-4 font-bold bg-main text-white">
-        <span>Flag</span>
-        <span>Name</span>
-        <span>Region</span>
-        <span>Population</span>
-        <span>Languages</span>
-      </div>
       {currentItems && currentItems.length > 0 ? (
-        currentItems.map((item: CountryType) => (
-          <ListItem key={item.name.common} {...item} />
-        ))
+        <>
+          <div className="grid grid-cols-5 mt-8 px-4 py-4 font-bold bg-main text-white">
+            <span>Flag</span>
+            <span>Name</span>
+            <span>Region</span>
+            <span>Population</span>
+            <span>Languages</span>
+          </div>
+          {currentItems.map((item: CountryType) => (
+            <ListItem key={item.name.common} {...item} />
+          ))}
+        </>
       ) : (
         <NoData message="No country" />
       )}
