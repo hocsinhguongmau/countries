@@ -75,7 +75,10 @@ export default function List() {
     <>
       {currentItems && currentItems.length > 0 ? (
         <>
-          <div className="grid grid-cols-5 mt-8 px-4 py-4 font-bold bg-main text-white">
+          <div
+            className="grid grid-cols-5 mt-8 px-4 py-4 font-bold bg-main text-white"
+            data-cy="list-countries"
+          >
             <span>Flag</span>
             <span>Name</span>
             <span>Region</span>
@@ -90,16 +93,18 @@ export default function List() {
         <NoData message="No country" />
       )}
       {sortedItems.length > items ? (
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel={next}
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={3}
-          pageCount={pageCount}
-          previousLabel={prev}
-          renderOnZeroPageCount={() => null}
-          className="pagination"
-        />
+        <div data-cy="pagination">
+          <ReactPaginate
+            breakLabel="..."
+            nextLabel={next}
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={3}
+            pageCount={pageCount}
+            previousLabel={prev}
+            renderOnZeroPageCount={() => null}
+            className="pagination"
+          />
+        </div>
       ) : null}
     </>
   )

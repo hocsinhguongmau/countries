@@ -22,6 +22,7 @@ export default function Sort() {
         id="sort"
         className="outline-none border border-gray rounded"
         onChange={handleSort}
+        data-cy="sorting"
       >
         <option value="name_asc">Name asc</option>
         <option value="name_desc">Name desc</option>
@@ -36,6 +37,7 @@ export default function Sort() {
         id="itemsPerPage"
         className="outline-none border border-gray rounded"
         onChange={handleNumberOfItems}
+        data-cy="number-of-items"
       >
         <option value="5">5</option>
         <option value="10">10</option>

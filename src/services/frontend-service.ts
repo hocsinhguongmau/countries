@@ -58,7 +58,7 @@ export const debounce = <F extends (...params: any[]) => void>(
   func: F,
   timeout: number
 ) => {
-  let timer: number
+  let timer: ReturnType<typeof setTimeout>
   return (...args: any[]) => {
     clearTimeout(timer)
     timer = setTimeout(() => {

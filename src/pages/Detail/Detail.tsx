@@ -37,10 +37,10 @@ export default function Home() {
           <GrNext /> {data[0].name.common}
         </p>
 
-        <h1 className="text-4xl font-bold text-main mt-8">
+        <h1 className="text-4xl font-bold text-main mt-8" data-cy="title">
           {data[0].name.common}
         </h1>
-        <p className="mt-2 text-secondary text-xl">
+        <p className="mt-2 text-secondary text-xl" data-cy="capital">
           Capital: {data[0].capital}
         </p>
         <p className="mt-4">
@@ -50,22 +50,23 @@ export default function Home() {
             width={200}
             height={100}
             className="border border-gray"
+            data-cy="flag"
           />
         </p>
         <div>
-          <p className="mt-4">
+          <p className="mt-4" data-cy="area">
             <b>Total area:</b> {data[0].area}
           </p>
-          <p className="mt-2">
+          <p className="mt-2" data-cy="population">
             <b>Population:</b> {data[0].population}
           </p>
-          <p className="flex gap-2 mt-2">
+          <p className="flex gap-2 mt-2" data-cy="languages">
             <b>Languages: </b>
             {renderLanguages && (
               <ul className="list-disc list-inside">{renderLanguages}</ul>
             )}
           </p>
-          <div className="mt-2 flex gap-2">
+          <div className="mt-2 flex gap-2" data-cy="geography">
             <b>Geography:</b>
             <div>
               <p>
@@ -80,7 +81,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="w-full h-full">
+      <div className="w-full h-full" data-cy="map">
         <GoogleMapReact
           bootstrapURLKeys={{ key: '' }}
           defaultCenter={defaultProps.center}

@@ -18,6 +18,7 @@ export default function ListItem({
     <Link
       to={`/country/${name.common}`}
       className="grid grid-cols-5 px-4 py-2 hover:bg-secondary hover:text-white items-center border-b border-l border-r border-gray odd:bg-red-100"
+      data-cy="list-item"
     >
       <div>
         <img

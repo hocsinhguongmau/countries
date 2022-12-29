@@ -16,6 +16,7 @@ export default function SearchBar() {
       placeholder="Enter to search"
       className="outline-none border border-gray py-2 px-4 rounded"
       onChange={handleChange}
+      data-cy="search-input"
     />
   )
 }
