@@ -53,3 +53,16 @@ export const filterCountries = (data: CountryType[], keyword: string) => {
     item.name.common.toLowerCase().includes(keyword.toLowerCase())
   )
 }
+
+export const debounce = <F extends (...params: any[]) => void>(
+  func: F,
+  timeout: number
+) => {
+  let timer: number
+  return (...args: any[]) => {
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      func.apply(this, args)
+    }, timeout)
+  }
+}

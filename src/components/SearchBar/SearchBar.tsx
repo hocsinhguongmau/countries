@@ -1,12 +1,14 @@
+import { debounce } from '@/services/frontend-service'
 import { useSearchStore } from '@/store/search'
 import React from 'react'
 
 export default function SearchBar() {
   const { setSearch } = useSearchStore()
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const SearchCountries = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value)
   }
+  const handleChange = debounce(SearchCountries, 300)
 
   return (
     <input
