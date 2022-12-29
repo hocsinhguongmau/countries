@@ -12,7 +12,7 @@ export const sortNameAsc = (data: CountryType[]) => {
   })
 }
 
-export const sortNameDesc = (data: any) => {
+export const sortNameDesc = (data: CountryType[]) => {
   return data.sort((a: CountryType, b: CountryType) => {
     if (a.name.common < b.name.common) {
       return 1
@@ -36,7 +36,7 @@ export const sortPopulationAsc = (data: CountryType[]) => {
   })
 }
 
-export const sortPopulationDesc = (data: any) => {
+export const sortPopulationDesc = (data: CountryType[]) => {
   return data.sort((a: CountryType, b: CountryType) => {
     if (a.population < b.population) {
       return 1
@@ -46,4 +46,10 @@ export const sortPopulationDesc = (data: any) => {
     }
     return 0
   })
+}
+
+export const filterCountries = (data: CountryType[], keyword: string) => {
+  return data.filter((item: any) =>
+    item.name.common.toLowerCase().includes(keyword.toLowerCase())
+  )
 }
