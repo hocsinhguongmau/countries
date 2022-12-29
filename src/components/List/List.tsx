@@ -26,18 +26,25 @@ export default function List() {
   const [pageCount, setPageCount] = useState(0)
   const [itemOffset, setItemOffset] = useState(0)
 
+  //filter countries
+  useEffect(() => {
+    if (data !== undefined && data.length > 0) {
+      setFilterItems(filterCountries(data, search))
+    }
+  }, [data, search])
+
   //sort countries
   useEffect(() => {
     if (filterItems !== undefined) {
-      console.log(filterItems)
+      const newArray = [...filterItems]
       if (sort === 'name_desc') {
-        setSortedItems(sortNameDesc(filterItems))
+        setSortedItems(sortNameDesc(newArray))
       } else if (sort === 'population_asc') {
-        setSortedItems(sortPopulationAsc(filterItems))
+        setSortedItems(sortPopulationAsc(newArray))
       } else if (sort === 'population_desc') {
-        setSortedItems(sortPopulationDesc(filterItems))
+        setSortedItems(sortPopulationDesc(newArray))
       } else {
-        setSortedItems(sortNameAsc(filterItems))
+        setSortedItems(sortNameAsc(newArray))
       }
     }
   }, [filterItems, sort])
@@ -46,17 +53,11 @@ export default function List() {
   useEffect(() => {
     const endOffset = itemOffset + items
     if (sortedItems !== undefined) {
-      setCurrentItems(sortedItems.slice(itemOffset, endOffset))
-      setPageCount(Math.ceil(sortedItems.length / items))
+      const newArray = [...sortedItems]
+      setCurrentItems(newArray.slice(itemOffset, endOffset))
+      setPageCount(Math.ceil(newArray.length / items))
     }
   }, [sortedItems, itemOffset, items])
-
-  //filter countries
-  useEffect(() => {
-    if (data !== undefined && data.length > 0) {
-      setFilterItems(filterCountries(data, search))
-    }
-  }, [data, search])
 
   const handlePageClick = (event: any) => {
     const newOffset = (event.selected * items) % sortedItems.length
