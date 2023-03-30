@@ -1,0 +1,126 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("assets/fonts/Roboto-Regular.woff2") format("woff2"), url("assets/fonts/Roboto-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("assets/fonts/Roboto-Bold.woff2") format("woff2"), url("assets/fonts/Roboto-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@-webkit-keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.circle-animation {
+  @apply relative h-[90px] w-[90px];
+}
+.circle-animation p {
+  @apply absolute top-1/2 left-0 z-10 w-full -translate-y-1/2 text-center text-xs font-bold;
+}
+.circle-animation .circle {
+  @apply relative z-0 h-full w-full rounded-full;
+  background: linear-gradient(#9be3ff, #f4b1ea, #f8d46b);
+  -webkit-animation: loading 2s linear infinite;
+          animation: loading 2s linear infinite;
+}
+.circle-animation .circle span {
+  @apply absolute h-full w-full rounded-full;
+  background: linear-gradient(#9be3ff, #f4b1ea, #f8d46b);
+}
+.circle-animation .circle span:nth-child(1) {
+  filter: blur(3px);
+}
+.circle-animation .circle span:nth-child(2) {
+  filter: blur(6px);
+}
+.circle-animation .circle span:nth-child(3) {
+  filter: blur(8px);
+}
+.circle-animation .circle span:nth-child(4) {
+  filter: blur(12px);
+}
+.circle-animation .circle:after {
+  content: "";
+  @apply absolute top-0 left-0 right-0 bottom-0 rounded-full border-8 border-white bg-[#030303];
+}
+
+.bouncing-loader {
+  @apply flex gap-1 justify-center mt-4;
+}
+.bouncing-loader > div {
+  @apply h-2 w-2 rounded-full bg-main;
+  -webkit-animation: bouncing-loader 0.45s infinite alternate;
+          animation: bouncing-loader 0.45s infinite alternate;
+}
+.bouncing-loader > div:nth-child(2) {
+  -webkit-animation-delay: 0.15s;
+          animation-delay: 0.15s;
+}
+.bouncing-loader > div:nth-child(3) {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+
+@-webkit-keyframes bouncing-loader {
+  to {
+    opacity: 0.1;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes bouncing-loader {
+  to {
+    opacity: 0.1;
+    transform: translateY(-10px);
+  }
+}
+.btn {
+  @apply bg-main text-white px-4 py-2 rounded hover:bg-secondary transition-all duration-200 ease-out;
+}
+
+.pagination {
+  @apply mt-8 flex justify-center;
+}
+.pagination li {
+  @apply m-0 p-0;
+}
+.pagination li:after {
+  @apply hidden;
+}
+.pagination li a {
+  @apply inline-block px-3 py-2 text-xs transition-all duration-300 md:text-sm;
+}
+.pagination li a:hover {
+  @apply bg-slate-300;
+}
+.pagination li.selected a {
+  @apply bg-main text-white;
+}/*# sourceMappingURL=global.css.map */
